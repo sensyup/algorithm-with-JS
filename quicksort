@@ -1,0 +1,27 @@
+function fastsort(A,start,end){
+
+    if (end-start<=1) return A;
+    var i=fastsorthelp(A,start,end);
+    fastsort(A,start,i-1);
+    fastsort(A,i+1,end);
+    return A;
+}
+function fastsorthelp(A,start,end){
+
+    var i=start;
+    for(var j=start;j<end;j++){
+        if(A[j]<A[end]){
+            var temp=A[j];
+            A[j]=A[i];
+            A[i]=temp;
+            i++;
+        }
+    }
+    temp=A[end];
+    A[end]=A[i];
+    A[i]=temp;
+    return i;
+}
+var A=[0,3,9,2,8];
+fastsort(A,0,4);
+console.log(A);
